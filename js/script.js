@@ -1,16 +1,13 @@
-
-
 const form = document.querySelector('form');
-const input = document.querySelector('input');
 const list = document.querySelector('.list');
-
+const input = document.querySelector('input');
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const addTodo = () => {
     list.innerHTML = '';
     todos.forEach((todo, index) => {
         list.innerHTML += `
-            <p>${index}  ${todo}</p>
+            <p>${index} ${todo}</p>
         `;
     });
 };
@@ -25,7 +22,7 @@ form.addEventListener('submit', (e) => {
     const regex = /\S+\s*/g;
     const wordCount = (value.match(regex) || []).length;
 
-    if (value !== '' && wordCount >= 4) {
+    if (value !== '' && wordCount >= 2) {
         todos.push(value);
         localStorage.setItem('todos', JSON.stringify(todos));
         input.value = '';
@@ -38,14 +35,9 @@ form.addEventListener('submit', (e) => {
         input.style.borderColor = 'red';
     }
 });
-
-
 input.addEventListener('input', () => {
     input.style.borderColor = '';
 });
-
-
-
 list.addEventListener('click', (e) => {
     if (e.target.tagName === 'P') {
         const targetElement = e.target;
@@ -62,3 +54,7 @@ list.addEventListener('click', (e) => {
         }, 300);
     }
 });
+
+
+
+
